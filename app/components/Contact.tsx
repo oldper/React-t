@@ -42,10 +42,8 @@ export const Contact: React.FC = () => {
   
       setIsSubmitting(true);
       try {
-        // Add your form submission logic here
         console.log('Form submitted:', formData);
         
-        // Reset form after successful submission
         setFormData({
           name: '',
           email: '',
@@ -68,7 +66,6 @@ export const Contact: React.FC = () => {
         [name]: value
       }));
       
-      // Clear error when user starts typing
       if (errors[name as keyof FormErrors]) {
         setErrors(prev => ({
           ...prev,

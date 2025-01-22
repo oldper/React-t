@@ -3,6 +3,5 @@ export interface ServiceCardProps {
   variant?: 'light' | 'dark' | 'green';
   fullWidth?: boolean;
   serviceNumber?: number;
-  serviceId: string;
   children: React.ReactNode;
 }

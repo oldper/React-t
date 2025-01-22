@@ -4,7 +4,6 @@ export function Header() {
         <header className="flex justify-between items-center mb-16">
         <div className="flex items-center gap-2">
           <div className="w-6 h-6">
-            {/* Triangle logo */}
             <svg viewBox="0 0 24 24" className="w-full h-full">
               <path
                 d="M12 2L2 20h20L12 2z"

@@ -4,9 +4,7 @@ export const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-900 text-white rounded-t-3xl px-8 py-12">
       <div className="max-w-6xl mx-auto">
-        {/* Top Section */}
         <div className="flex flex-col md:flex-row justify-between items-start mb-12">
-          {/* Logo and Contact */}
           <div className="mb-8 md:mb-0">
             <a href="/" className="inline-block mb-8">
               <div className="flex items-center gap-2">
@@ -30,7 +28,6 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Navigation */}
           <nav className="flex gap-8">
             <a 
               href="/about"
@@ -58,7 +55,6 @@ export const Footer: React.FC = () => {
             </a>
           </nav>
 
-          {/* Social Links */}
           <div className="flex gap-4 mt-8 md:mt-0">
             <a 
               href="https://linkedin.com" 
@@ -83,10 +79,8 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="w-full h-px bg-gray-800 mb-8" />
 
-        {/* Copyright */}
         <p className="text-gray-400 text-sm">
           © 2025 AdaKrei. All Rights Reserved.
         </p>

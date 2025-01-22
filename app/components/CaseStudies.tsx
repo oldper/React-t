@@ -1,4 +1,4 @@
-import { CaseStudy } from "./CaseStudy";
+import { CaseStudy } from "~/components/CaseStudy";
 
 export const CaseStudies: React.FC = () => {
     return (
