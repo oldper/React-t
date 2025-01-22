@@ -1,5 +1,4 @@
 import type { Route } from './+types/_index';
-import { Welcome } from '~/welcome/welcome';
 import { Header } from '~/components/Header';
 import { Navigation } from '~/components/Navigation';
 import {Service} from '~/components/Service'
