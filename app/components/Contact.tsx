@@ -2,90 +2,40 @@ import React, { useState } from 'react';
 import type { FormData } from '~/interface/FormData';
 import type { FormErrors } from '~/interface/FormError';
 
+function handleChange() {
+  console.log('changed!');
+}
+
+function handleSubmit() {
+  console.log('Submit!!!');
+}
 export const Contact: React.FC = () => {
-    const [formData, setFormData] = useState<FormData>({
-      name: '',
-      email: '',
-      message: ''
-    });
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // ... rest of your state management and handlers remain the same ...
+
   
-    const [errors, setErrors] = useState<FormErrors>({});
-    const [isSubmitting, setIsSubmitting] = useState(false);
-  
-    const validateForm = (): boolean => {
-      const newErrors: FormErrors = {};
-  
-      if (!formData.name.trim()) {
-        newErrors.name = 'Name is required';
-      }
-  
-      if (!formData.email.trim()) {
-        newErrors.email = 'Email is required';
-      } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-        newErrors.email = 'Invalid email format';
-      }
-  
-      if (!formData.message.trim()) {
-        newErrors.message = 'Message is required';
-      }
-  
-      setErrors(newErrors);
-      return Object.keys(newErrors).length === 0;
-    };
-  
-    const handleSubmit = async (e: React.FormEvent) => {
-      e.preventDefault();
-      
-      if (!validateForm()) {
-        return;
-      }
-  
-      setIsSubmitting(true);
-      try {
-        console.log('Form submitted:', formData);
-        
-        setFormData({
-          name: '',
-          email: '',
-          message: ''
-        });
-        
-      } catch (error) {
-        console.error('Error submitting form:', error);
-      } finally {
-        setIsSubmitting(false);
-      }
-    };
-  
-    const handleChange = (
-      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-      const { name, value } = e.target;
-      setFormData(prev => ({
-        ...prev,
-        [name]: value
-      }));
-      
-      if (errors[name as keyof FormErrors]) {
-        setErrors(prev => ({
-          ...prev,
-          [name]: undefined
-        }));
-      }
-    };
-  
-    return (
-      <section className="max-w-6xl mx-auto px-4 py-16" id="contact">
-        <div className="mb-8 space-y-2">
-          <div className="inline-block bg-[#E5FFB3] px-4 py-1 rounded-full text-lg font-medium">
-            Contact Us
-          </div>
-          <p className="text-gray-600">
-            BlaBlaBla
-          </p>
+  return (
+    <section className="max-w-6xl mx-auto px-4 py-16" id="contact">
+      <div className="mb-8 space-y-2">
+        <div className="inline-block bg-[#E5FFB3] px-6 py-2 rounded-full text-2xl font-semibold">
+          Contact Us
         </div>
-  
-        <div className="bg-gray-100 rounded-3xl p-8 md:p-12 max-w-2xl mx-auto">
+        <p className="text-gray-600">
+          BlaBlaBla
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-12 items-center">
+        {/* Contact Form */}
+        <div className="bg-gray-100 rounded-3xl p-8 md:p-12">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label 
@@ -109,7 +59,7 @@ export const Contact: React.FC = () => {
                 <p className="mt-1 text-sm text-red-500">{errors.name}</p>
               )}
             </div>
-  
+
             <div>
               <label 
                 htmlFor="email" 
@@ -132,7 +82,7 @@ export const Contact: React.FC = () => {
                 <p className="mt-1 text-sm text-red-500">{errors.email}</p>
               )}
             </div>
-  
+
             <div>
               <label 
                 htmlFor="message" 
@@ -155,7 +105,7 @@ export const Contact: React.FC = () => {
                 <p className="mt-1 text-sm text-red-500">{errors.message}</p>
               )}
             </div>
-  
+
             <button
               type="submit"
               disabled={isSubmitting}
@@ -167,6 +117,96 @@ export const Contact: React.FC = () => {
             </button>
           </form>
         </div>
-      </section>
-    );
-  };
+
+        {/* SVG Illustration */}
+        <div className="flex justify-center items-center">
+          <svg 
+            className="w-full max-w-md" 
+            viewBox="0 0 400 400" 
+            fill="none" 
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            {/* Background Circle */}
+            <circle cx="200" cy="200" r="180" fill="#E5FFB3" opacity="0.3" />
+            
+            {/* Envelope Base */}
+            <path 
+              d="M100 140H300V280H100V140Z" 
+              fill="white" 
+              stroke="black" 
+              strokeWidth="2"
+            />
+            
+            {/* Envelope Flap */}
+            <path 
+              d="M100 140L200 200L300 140" 
+              stroke="black" 
+              strokeWidth="2" 
+              fill="none"
+            />
+            
+            {/* Paper */}
+            <rect 
+              x="120" 
+              y="160" 
+              width="160" 
+              height="100" 
+              fill="#E5FFB3"
+            />
+            
+            {/* Lines on Paper */}
+            <line 
+              x1="140" 
+              y1="180" 
+              x2="260" 
+              y2="180" 
+              stroke="black" 
+              strokeWidth="2" 
+              opacity="0.3"
+            />
+            <line 
+              x1="140" 
+              y1="200" 
+              x2="260" 
+              y2="200" 
+              stroke="black" 
+              strokeWidth="2" 
+              opacity="0.3"
+            />
+            <line 
+              x1="140" 
+              y1="220" 
+              x2="260" 
+              y2="220" 
+              stroke="black" 
+              strokeWidth="2" 
+              opacity="0.3"
+            />
+            
+            {/* Decorative Elements */}
+            <circle 
+              cx="200" 
+              cy="140" 
+              r="5" 
+              fill="black"
+            />
+            <circle 
+              cx="160" 
+              cy="260" 
+              r="3" 
+              fill="black" 
+              opacity="0.5"
+            />
+            <circle 
+              cx="240" 
+              cy="260" 
+              r="3" 
+              fill="black" 
+              opacity="0.5"
+            />
+          </svg>
+        </div>
+      </div>
+    </section>
+  );
+};
