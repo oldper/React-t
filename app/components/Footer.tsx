@@ -1,6 +1,23 @@
-import React from 'react';
+import { useState } from "react";
 
 export const Footer: React.FC = () => {
+  const [activeSection, setActiveSection] = useState('home');
+
+  const handleScroll = (sectionId:string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const headerOffset = 180;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY  - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+      setActiveSection(sectionId);
+    }
+  }
+  
   return (
     <footer className="bg-gray-900 text-white rounded-t-3xl px-8 py-12">
       <div className="max-w-6xl mx-auto">
@@ -29,30 +46,40 @@ export const Footer: React.FC = () => {
           </div>
 
           <nav className="flex gap-8">
-            <a 
-              href="/about"
-              className="text-gray-300 hover:text-white transition-colors"
+            <button 
+              onClick={() => handleScroll('home')}
+              className={`text-gray-300 hover:text-white transition-colors`}
             >
-              About us
-            </a>
-            <a 
-              href="/services"
-              className="text-gray-300 hover:text-white transition-colors"
+              Home
+            </button>
+
+            <button
+              onClick={() => handleScroll('services')}
+              className={`text-gray-300 hover:text-white transition-colors`}
             >
               Services
-            </a>
-            <a 
-              href="/cases"
-              className="text-gray-300 hover:text-white transition-colors"
+            </button>
+
+            <button
+              onClick={() => handleScroll('casestudies')}
+              className={`text-gray-300 hover:text-white transition-colors`}
             >
-              Use Cases
-            </a>
-            <a 
-              href="/blog"
-              className="text-gray-300 hover:text-white transition-colors"
+              Case Studies
+            </button>
+
+            <button
+              onClick={() => handleScroll('workflow')}
+              className={`text-gray-300 hover:text-white transition-colors`}
             >
-              Blog
-            </a>
+              Our Workflow
+            </button>
+
+            <button
+              onClick={() => handleScroll('contact')}
+              className={`text-gray-300 hover:text-white transition-colors`}
+            >
+              Contact Us
+            </button>
           </nav>
 
           <div className="flex gap-4 mt-8 md:mt-0">
