@@ -2,7 +2,7 @@ import { CaseStudy } from "~/components/CaseStudy";
 
 export const CaseStudies: React.FC = () => {
     return (
-      <section className="max-w-6xl mx-auto px-4 py-16">
+      <section className="max-w-6xl mx-auto px-4 py-16" id="casestudies">
         <div className="mb-8 space-y-2">
           <div className="inline-block bg-[#E5FFB3] px-4 py-1 rounded-full text-lg font-medium">
             Case Studies

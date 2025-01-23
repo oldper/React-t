@@ -2,7 +2,7 @@ import { ServiceCard } from "~/components/ServiceCard";
 
 export const Service: React.FC = () => {
     return (
-      <section className="max-w-6xl mx-auto px-4 py-16">
+      <section className="max-w-6xl mx-auto px-4 py-16" id="services">
         <div className="mb-8">
           <div className="inline-block bg-[#E5FFB3] px-4 py-1 rounded-full text-sm font-medium mb-4">
             Services
