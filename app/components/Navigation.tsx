@@ -1,7 +1,7 @@
 import type { ClientLogo } from '~/interface/ClientLogo';
-import johnson from '~/image/johnson.jfif'
-import mentalWe from '~/image/mentalWe.png'
-import wits from '~/image/wits.png'
+import johnson from '~/image/johnson.jfif';
+import mentalWe from '~/image/mentalWe.png';
+import wits from '~/image/wits.png';
 
 export function Navigation() {
     const clientLogos: ClientLogo[] = [

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import adakrei from '~/image/adakrei.svg'
+import adakrei from '~/image/adakrei.svg';
 
 export function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -37,7 +37,7 @@ export function Header() {
                 <header className="flex justify-between items-center mb-16">
                     <div className="flex items-center gap-2">
                         <div className="w-6 h-6">
-                            <img src={adakrei} alt="AdaKrei"  className="w-full h-full [filter:invert(1)]"/> 
+                            <img src={adakrei} alt="AdaKrei" className="w-full h-full [filter:invert(1)]" />
                         </div>
                         <span className="font-semibold text-xl">Adakrei</span>
                     </div>

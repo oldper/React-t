@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import adakrei from '~/image/adakrei.svg'
+import adakrei from '~/image/adakrei.svg';
 export const Footer: React.FC = () => {
     const [activeSection, setActiveSection] = useState('home');
 
@@ -26,7 +26,7 @@ export const Footer: React.FC = () => {
                         <a href="/" className="inline-block mb-8">
                             <div className="flex items-center gap-2">
                                 <div className="w-8 h-8">
-                                    <img src={adakrei} alt="AdaKrei"  className="w-full h-full"/>  
+                                    <img src={adakrei} alt="AdaKrei" className="w-full h-full" />
                                 </div>
                                 <span className="text-2xl font-semibold">Adakrei</span>
                             </div>
