@@ -1,4 +1,4 @@
-import type { WorkFlowStep } from "~/interface/WorkFlowStep";
+import type { WorkFlowStep } from '~/interface/WorkFlowStep';
 export interface WorkflowItemProps {
     step: WorkFlowStep;
     isOpen: boolean;

@@ -1,7 +1,7 @@
 import type { Route } from './+types/_index';
 import { Header } from '~/components/Header';
 import { Navigation } from '~/components/Navigation';
-import {Service} from '~/components/Service'
+import { Service } from '~/components/Service';
 import { CaseStudies } from '~/components/CaseStudies';
 import { WorkFlow } from '~/components/WorkFlow';
 import { Contact } from '~/components/Contact';
@@ -15,7 +15,7 @@ export default function Home() {
         <div>
             <Header />
             <Navigation />
-            <Service/>
+            <Service />
             <CaseStudies />
             <WorkFlow />
             <Contact />

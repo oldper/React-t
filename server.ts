@@ -13,23 +13,24 @@ const viteDevServer =
     process.env.NODE_ENV === 'production'
         ? undefined
         : await import('vite').then((vite) =>
-            vite.createServer({
-                server: { middlewareMode: true }
-            })
-        );
+              vite.createServer({
+                  server: { middlewareMode: true }
+              })
+          );
 
 const reactRouterHandler = createRequestHandler({
     build: viteDevServer
         ? () => viteDevServer.ssrLoadModule('virtual:react-router/server-build')
-        : await fs.promises.access(serverBuildPath)
-            .then(() => import(serverBuildPath!))
-            .catch(err => {
-                console.error('Build file not found:', serverBuildPath);
-                process.exit(1);
-            }) as any
+        : ((await fs.promises
+              .access(serverBuildPath)
+              .then(() => import(serverBuildPath!))
+              .catch((err) => {
+                  console.error('Build file not found:', serverBuildPath);
+                  process.exit(1);
+              })) as any)
 });
 
-const handleResponse = function(
+const handleResponse = function (
     res: express.Response | null,
     statusCode: number,
     logMessage: string,
@@ -49,16 +50,16 @@ const handleResponse = function(
             res.status(statusCode).send(clientMessage || logMessage);
         }
     }
-}
+};
 
-const gracefulShutdown = function(server: Server, signal: string) {
+const gracefulShutdown = function (server: Server, signal: string) {
     console.info(`\n${signal} signal received.`);
     handleResponse(null, 200, 'Closing http server.');
     server.close(() => {
         handleResponse(null, 200, 'Http server closed.');
         process.exit(0);
     });
-}
+};
 
 const app = express();
 
@@ -72,10 +73,7 @@ if (viteDevServer) {
     app.use(viteDevServer.middlewares);
 } else {
     // Vite fingerprints its assets so we can cache forever.
-    app.use(
-        '/assets',
-        express.static('build/client/assets', { immutable: true, maxAge: '1y' })
-    );
+    app.use('/assets', express.static('build/client/assets', { immutable: true, maxAge: '1y' }));
 }
 
 // Everything else (like favicon.ico) is cached for an hour. You may want to be
@@ -92,14 +90,8 @@ dotenv.config({ path: ['.env', '.env.local'] });
 
 // Start the server
 const port = process.env.PORT || 3000;
-const server = app.listen(port, () =>
-    console.log(`Express server listening at http://localhost:${port}`)
-);
+const server = app.listen(port, () => console.log(`Express server listening at http://localhost:${port}`));
 
 // Handle shutdown signals
-process.on('SIGTERM', () =>
-    gracefulShutdown(server, 'SIGTERM')
-);
-process.on('SIGINT', () =>
-    gracefulShutdown(server, 'SIGINT')
-);
+process.on('SIGTERM', () => gracefulShutdown(server, 'SIGTERM'));
+process.on('SIGINT', () => gracefulShutdown(server, 'SIGINT'));

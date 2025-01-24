@@ -23,5 +23,5 @@ export default defineConfig(({ mode }) => {
             }
         },
         plugins: [reactRouter(), tsconfigPaths()]
-    }
+    };
 });
